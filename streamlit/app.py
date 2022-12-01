@@ -5,7 +5,7 @@ from PIL import Image
 
 st.title("Sports Image Classification")
 
-st.write("Sort an image of a player playing a sport into the sport being played.")
+st.write("Predict the sport that is being represented in the image.")
 
 model = load_model("best_model.h5")
 

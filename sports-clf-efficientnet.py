@@ -40,7 +40,7 @@ test_ds = test_ds.map(process)
 efficientnet = EfficientNetB3(
     input_shape=(256, 256, 3), include_top=False, weights="imagenet", classes=100
 )
-efficientnet.trainable = False
+efficientnet.trainable = True
 model = Sequential()
 model.add(efficientnet)
 model.add(Flatten())

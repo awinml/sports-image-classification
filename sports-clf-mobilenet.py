@@ -40,7 +40,7 @@ test_ds = test_ds.map(process)
 mobilenet = MobileNetV2(
     input_shape=(256, 256, 3), include_top=False, weights="imagenet", classes=100
 )
-mobilenet.trainable = False
+mobilenet.trainable = True
 model = Sequential()
 model.add(mobilenet)
 model.add(Flatten())
