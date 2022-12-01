@@ -9,7 +9,8 @@ from tensorflow.keras.layers import (
     Dropout,
 )
 from utils import plot_accuracy, plot_loss, process
-
+import numpy as np
+from sklearn.metrics import classification_report
 
 train_ds = image_dataset_from_directory(
     directory="sports-classification/train",
@@ -27,9 +28,18 @@ validation_ds = image_dataset_from_directory(
     image_size=(256, 256),
 )
 
+test_ds = image_dataset_from_directory(
+    directory="sports-classification/test",
+    labels="inferred",
+    label_mode="int",
+    batch_size=64,
+    image_size=(256, 256),
+)
+
 
 train_ds = train_ds.map(process)
 validation_ds = validation_ds.map(process)
+test_ds = test_ds.map(process)
 
 model = Sequential()
 model.add(
@@ -74,3 +84,11 @@ history = model.fit(
 
 plot_loss(history)
 plot_accuracy(history)
+
+y_pred = np.array([])
+y_true = np.array([])
+for x, y in test_ds:
+    y_pred = np.concatenate([y_pred, model.predict_classes(x)])
+    y_true = np.concatenate([y_true, np.argmax(y.numpy(), axis=-1)])
+
+print("Classification Report: \n", classification_report(y_pred, y_true))
