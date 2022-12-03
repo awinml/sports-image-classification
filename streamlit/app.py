@@ -24,7 +24,7 @@ with st.form("my_form"):
             image = Image.open(uploaded_file)
             st.image(image, caption="Uploaded Image", use_column_width=True)
             st.markdown(
-                f"<h2 style='text-align: center;'>Predicted Sport: {label}</h2>",
+                f"<h2 style='text-align: center;'>{label}</h2>",
                 unsafe_allow_html=True,
             )
         else:
@@ -41,6 +41,6 @@ if sample_img_choice:
     st.image(image, caption="Image", use_column_width=True)
     label = predict_label(image, model)
     st.markdown(
-        f"<h2 style='text-align: center;'>Predicted Sport: {label}</h2>",
+        f"<h2 style='text-align: center;'>{label}</h2>",
         unsafe_allow_html=True,
     )

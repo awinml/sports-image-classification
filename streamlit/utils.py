@@ -109,6 +109,9 @@ def predict_label(img, model):
     resized_img = resize(img, (150, 150)).numpy().astype(int)
     exp_img = np.expand_dims(resized_img, 0)
     y_prob = model.predict(exp_img)
-    y_classes = y_prob.argmax(axis=-1)
-    label = classes[y_classes[0]]
-    return label.capitalize()
+    if y_prob.max(axis=-1) < 0.5:
+        return "Cannot predict. Please provide appropriate image."
+    else:
+        y_classes = y_prob.argmax(axis=-1)
+        label = classes[y_classes[0]]
+        return "Predicted Sport: " + label.capitalize()
