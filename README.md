@@ -1,5 +1,10 @@
 # Sports Image Classification
 
+<div align='center'>
+   <img src="sports_img_clf_cover.png"  width="700" height="500">
+<br/>
+</div>
+
 - Built a **image classification model** to predict the sport that is being represented in the image.
 - Compared five different CNN architectures ie. a **custom CNN, InceptionV3, ResNet50V2, MobileNetV2 and EfficientNetB3** based on model performance on this dataset.
 - A fine-tuned **EfficientNetB3** model was used for generating the final predictions which yielded an **Accuracy of 92.72%, F1-Score of 91.76% and an ROC-AUC Score of 96.92%.**
